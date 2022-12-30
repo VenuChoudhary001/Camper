@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/navbar";
-import { Provider } from "../context/searchContext";
+import { Provider } from "../context/store";
 
 const Layout = ({ children }) => {
   return (

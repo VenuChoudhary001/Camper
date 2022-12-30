@@ -1,16 +1,20 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useContext } from 'react'
+import SEARCH_CONTEXT from '../context/store'
 
-const AddBtn = ({id,placeholder}) => {
+const AddBtn = ({camp}) => {
+  
+  const {addCampgrounds}=useContext(SEARCH_CONTEXT);
+  
   return (
     <>
-    <div className='bg-pink rounded-full  text-brown min-w-max  items-center text-xs flex gap-2 px-2 cursor-pointer py-1 '>
+    <div onClick={()=>addCampgrounds(camp)} className='bg-pink rounded-full cursor-pointer  text-brown min-w-max  items-center text-xs flex gap-2 px-2 cursor-pointer py-1 '>
         <Image 
         src={'/icons/plus-circle.svg'}
         width={20}
         height={20}
         />
-        {placeholder}
+        {camp.name}
     </div>
     </>
   )
