@@ -11,7 +11,7 @@ const Accordian = ({ children ,title,step}) => {
 
   return (
     <>
-      <main className="border-gray-200 border-2 flex flex-col gap-6 rounded-lg p-4 w-full relative">
+      <main className={`${initialState.currentStep>step ?"border-lightGreen": "border-gray-200"} border-2 flex flex-col gap-6 rounded-lg p-4 w-full relative`}>
         <div className="flex items-center justify-between">
           <div className="text-black flex gap-2 items-center text-2xl font-medium">
             Step {step} :&nbsp;
