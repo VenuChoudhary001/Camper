@@ -23,35 +23,34 @@ export const reducer = (state, action) => {
       return { ...state, campgrounds };
     }
     case ACTIONS.UPDATE_STEP: {
-      return { ...state, currentStep: state.currentStep + action.payload };
+      return { ...state, currentStep:action.payload };
     }
     case ACTIONS.UPDATE_OPTIONS: {
-        let res=state.campgrounds.find(item=>item._id==action.payload.id);
-        if(action.payload.option in res.options){
-            let abc=res.option.filter(item=>item!=action.payload.option);
-            return {...state,campgrounds:[
-              ...state.campgrounds,
-              {
-                ...res,
-                options:[...abc]
-              }
-            ]}
-        }else{
-          res={
-            
-          }
-          return {
-            ...state,
-            campgrounds:[
-              ...state.campgrounds,
-              {
-                ...res,
-              }
-            ]
-          }
-        }
-        
+      console.log(action)
+      let res=state.campgrounds.find(item=>item._id==action.payload.camp_id);
+      let opt=res.options.find(item=>item==action.payload.option_id);
+      
       return state;
+    }
+    case ACTIONS.SELECT_CHECK_IN:{
+      return {
+        ...state,
+        checkIn:action.payload
+      }
+    }
+    case ACTIONS.SELECT_CHECK_OUT:{
+      return {
+        ...state,
+        checkOut:action.payload
+      }
+    }
+    case ACTIONS.SELECT_DATES:{
+      return {
+        ...state,
+        checkIn:null,
+        checkOut:null,
+        selectedDate:action.payload
+      }
     }
     default:
       return state;

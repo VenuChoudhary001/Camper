@@ -1,14 +1,13 @@
-import React, { Component, useReducer } from 'react'
+import React, { Component, useEffect, useReducer } from 'react'
 import { ACTIONS } from './action';
 import {reducer} from './reducer'
-
+import add from 'date-fns/add'
 export const INITIAL_STATE={
     campgrounds:[],
-    dates:{
-        checkIn:"",
-        checkOut:"",
-    },
+    checkIn:new Date(),
+    checkOut:add(new Date(),{days:5}),
     campingEquip:[],
+    selectedDate:null,
     currentStep:1
 }
 const SEARCH_CONTEXT=React.createContext();
@@ -32,10 +31,28 @@ export const Provider=({children})=>{
         updateStep:(indx)=>{
             dispatch({type:ACTIONS.UPDATE_STEP,payload:indx})
         },
-        updateCampground:(option,id)=>{
-            dispatch({type:ACTIONS.UPDATE_OPTIONS,payload:{option,id}})
+        updateCampground:(option,camp_id,option_id)=>{
+            dispatch({type:ACTIONS.UPDATE_OPTIONS,payload:{option,camp_id,option_id}})
+        },
+        updateCheckIn:(data)=>{
+            dispatch({type:ACTIONS.SELECT_CHECK_IN,payload:data})
+        },
+        updateCheckOut:(data)=>{
+            dispatch({type:ACTIONS.SELECT_CHECK_OUT,payload:data})
+        },
+        updateDate:(date)=>{
+            dispatch({type:ACTIONS.SELECT_DATES,payload:date})
         }
     }
+
+    
+    useEffect(()=>{
+      if(value.initialState.campgrounds.length==0){
+        value.updateStep(1);
+      }
+    },[value.initialState.campgrounds])
+
+
 
     return <SEARCH_CONTEXT.Provider value={value}>{children}</SEARCH_CONTEXT.Provider>
 }

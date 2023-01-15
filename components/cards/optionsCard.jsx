@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import SEARCH_CONTEXT from "../../context/store";
 
 const OptionsCard = ({ camp }) => {
-  const {}=useContext(SEARCH_CONTEXT);
+  const {updateCampground}=useContext(SEARCH_CONTEXT);
   return (
     <>
       <main className="flex flex-col gap-4 p-4">
@@ -16,17 +16,17 @@ const OptionsCard = ({ camp }) => {
               <div className="text-brown font-medium text-lg shadow pb-2">
                 {item.option_name}
               </div>
-              {item.options_list.map((item) => (
+              {Object.keys(item.options_list).map((option) => (
                 <div className="bg-white flex flex-col gap-4">
                   <label className="flex gap-2 text-sm items-center">
                     <input
                       type="checkbox"
                       name="sites"
                       className="w-5 h-5 intermediate:bg-gray-200 intermediate:w-20"
-                      value={Object.keys(item)}
-                      onChange={(e)=>console.log(e.target.checked)}
+                      value={option}
+                      onChange={(e)=>updateCampground(option,camp._id,item.option_id)}
                     />
-                    {Object.keys(item)}
+                    {option}
                   </label>
                 </div>
               ))}

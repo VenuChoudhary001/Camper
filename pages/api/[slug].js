@@ -9,11 +9,20 @@ const data = {
         {
           option_id: "0xaffX#0cn",
           option_name: "Campground Loops",
-          options_list: [
-            { "Sites 1-21": false },
-            { "Sites 45-71": false },
-            { "Sites 88-111": false },
-          ],
+          options_list: {
+             "Sites 1-21": false ,
+             "Sites 45-71": false ,
+             "Sites 88-111": false ,
+          },
+        },
+        {
+          option_id: "2mckmkxaffX#0cn",
+          option_name: "Spot Type",
+          options_list: {
+             "Standard": false ,
+             "RV/Trailer only": false ,
+             "Group Tent only": false ,
+          },
         },
       ],
     },
@@ -27,11 +36,20 @@ const data = {
           option_id: "1xaffX#0cn",
           option_name: "Campground Loops",
 
-          options_list: [
-            { "Sites 1-21": false },
-            { "Sites 45-71": false },
-            { "Sites 88-111": false },
-          ],
+          options_list: {
+            "Sites 1-21": false ,
+            "Sites 45-71": false ,
+            "Sites 88-111": false ,
+         },
+        },
+        {
+          option_id: "kkmckmkxaffX#0cn",
+          option_name: "Spot Type",
+          options_list: {
+             "Standard": false ,
+             "RV/Trailer only": false ,
+             "Group Tent only": false ,
+          },
         },
       ],
     },
@@ -45,11 +63,20 @@ const data = {
           option_id: "2xaffX#0cn",
           option_name: "Campground Loops",
 
-          options_list: [
-            { "Sites 1-21": false },
-            { "Sites 45-71": false },
-            { "Sites 88-111": false },
-          ],
+          options_list: {
+            "Sites 1-21": false ,
+            "Sites 45-71": false ,
+            "Sites 88-111": false ,
+         },
+        },
+        {
+          option_id: "ZmckmkxaffX#0cn",
+          option_name: "Spot Type",
+          options_list: {
+             "Standard": false ,
+             "RV/Trailer only": false ,
+             "Group Tent only": false ,
+          },
         },
       ],
     },
@@ -62,11 +89,20 @@ const data = {
         {
           option_id: "3xaffX#0cn",
           option_name: "Campground Loops",
-          options_list: [
-            { "Sites 1-21": false },
-            { "Sites 45-71": false },
-            { "Sites 88-111": false },
-          ],
+          options_list: {
+            "Sites 1-21": false ,
+            "Sites 45-71": false ,
+            "Sites 88-111": false ,
+         },
+        },
+        {
+          option_id: "5x2mckmkxaffX#0cn",
+          option_name: "Spot Type",
+          options_list: {
+             "Standard": false ,
+             "RV/Trailer only": false ,
+             "Group Tent only": false ,
+          },
         },
       ],
     },
@@ -79,11 +115,20 @@ const data = {
         {
           option_id: "4xaffX#0cn",
           option_name: "Campground Loops",
-          options_list: [
-            { "Sites 1-21": false },
-            { "Sites 45-71": false },
-            { "Sites 88-111": false },
-          ],
+          options_list: {
+            "Sites 1-21": false ,
+            "Sites 45-71": false ,
+            "Sites 88-111": false ,
+         },
+        },
+        {
+          option_id: "2m89ckmkxaffX#0cn",
+          option_name: "Spot Type",
+          options_list: {
+             "Standard": false ,
+             "RV/Trailer only": false ,
+             "Group Tent only": false ,
+          },
         },
       ],
     },
@@ -96,11 +141,20 @@ const data = {
         {
           option_id: "5xaffX#0cn",
           option_name: "Campground Loops",
-          options_list: [
-            { "Sites 1-21": false },
-            { "Sites 45-71": false },
-            { "Sites 88-111": false },
-          ],
+          options_list: {
+            "Sites 1-21": false ,
+            "Sites 45-71": false ,
+            "Sites 88-111": false ,
+         },
+        },
+        {
+          option_id: "9992mckmkxaffX#0cn",
+          option_name: "Spot Type",
+          options_list: {
+             "Standard": false ,
+             "RV/Trailer only": false ,
+             "Group Tent only": false ,
+          },
         },
       ],
     },
