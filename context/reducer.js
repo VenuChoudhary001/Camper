@@ -52,6 +52,12 @@ export const reducer = (state, action) => {
         selectedDate:action.payload
       }
     }
+    case ACTIONS.SELECT_EQUIPMENT:{
+      
+      return {...state,campingEquip:[
+        ...action.payload
+      ]};
+    }
     default:
       return state;
   }

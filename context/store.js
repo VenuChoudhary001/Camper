@@ -42,6 +42,9 @@ export const Provider=({children})=>{
         },
         updateDate:(date)=>{
             dispatch({type:ACTIONS.SELECT_DATES,payload:date})
+        },
+        updateEquipment:(data)=>{
+            dispatch({type:ACTIONS.SELECT_EQUIPMENT,payload:data})
         }
     }
 

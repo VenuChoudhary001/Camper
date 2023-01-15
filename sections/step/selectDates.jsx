@@ -6,9 +6,10 @@ import Image from "next/image";
 import SEARCH_CONTEXT from "../../context/store";
 import add from "date-fns/add";
 const SelectDates = () => {
-  const { initialState, updateCheckIn, updateCheckOut,updateStep ,updateDate} =
+  const { initialState, updateCheckIn, updateCheckOut,updateStep ,updateDate,updateEquipment} =
     useContext(SEARCH_CONTEXT);
   const ref = useRef(null);
+  const [equip,setEquip]=useState([...initialState.campingEquip]);
   const endRef = useRef(null);
   const [selectDate, setSelectDate] = useState(initialState.selectDate);
   const CheckIn = React.forwardRef(({ value, onClick }, ref) => (
@@ -51,6 +52,14 @@ const SelectDates = () => {
   const handleClick=()=>{
     if(selectDate!=-1){
       updateStep(3)
+    }
+  }
+  const handleChange=(e)=>{
+    if(e.target.checked){
+      setEquip([...equip,e.target.value])
+      updateEquipment([...equip,e.target.value])
+    }else{
+      updateEquipment(equip.filter(item=>item!=e.target.value))
     }
   }
   return (
@@ -103,7 +112,9 @@ const SelectDates = () => {
                     type="checkbox"
                     name="tent"
                     className="w-5 h-5 intermediate:bg-gray-200 intermediate:w-20"
-                    value={"Tent"}
+                    value={"tent"}
+                    checked={equip.includes("tent")}
+                    onChange={handleChange}
                   />
                   Tent
                 </label>
@@ -114,7 +125,9 @@ const SelectDates = () => {
                     type="checkbox"
                     name="tent"
                     className="w-5 h-5 intermediate:bg-gray-200 intermediate:w-20"
-                    value={"Tent"}
+                    value={"truck"}
+                    checked={equip.includes("truck")}
+                    onChange={handleChange}
                   />
                   RV/Trailer/Truck
                 </label>
