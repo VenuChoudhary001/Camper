@@ -8,13 +8,14 @@ export const INITIAL_STATE={
     checkOut:add(new Date(),{days:5}),
     campingEquip:[],
     selectedDate:null,
-    currentStep:1
+    currentStep:1,
+    email_id:""
 }
 const SEARCH_CONTEXT=React.createContext();
 
 export const Provider=({children})=>{
     const [state,dispatch]=useReducer(reducer,INITIAL_STATE);
-
+    
 
     const value={
         initialState:state,
@@ -45,6 +46,9 @@ export const Provider=({children})=>{
         },
         updateEquipment:(data)=>{
             dispatch({type:ACTIONS.SELECT_EQUIPMENT,payload:data})
+        },
+        updateEmail:data=>{
+            dispatch({type:ACTIONS.UPDATE_EMAIL,payload:data})
         }
     }
 

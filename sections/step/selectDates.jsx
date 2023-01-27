@@ -60,6 +60,7 @@ const SelectDates = () => {
       updateEquipment([...equip,e.target.value])
     }else{
       updateEquipment(equip.filter(item=>item!=e.target.value))
+      setEquip(equip.filter(item=>item!=e.target.value))
     }
   }
   return (
@@ -68,7 +69,7 @@ const SelectDates = () => {
         <main className="grid grid-cols-2 gap-6 px-4">
           <div className="flex flex-col gap-4">
             <div className="text-black text-xl font-medium">Your Dates</div>
-            <div className="flex gap-2 text-black">
+            <div className="flex gap-2 text-black p-2 border-brown border-[1px] rounded-lg">
               <input
                 type={"radio"}
                 name="select-date"
@@ -79,7 +80,7 @@ const SelectDates = () => {
               />
               Any Day within the Next 30 Days
             </div>
-            <div className="flex gap-2 text-black">
+            <div className="flex gap-2 text-black p-2 border-brown border-[1px] rounded-lg">
               <input
                 type={"radio"}
                 name="select-date"
@@ -89,12 +90,12 @@ const SelectDates = () => {
               />
               Any Weekend over the Next 60 Days
             </div>
-            <div className="flex gap-2 text-black">
+            <div className="flex gap-2 text-black p-2 border-brown border-[1px] rounded-lg">
               <input
                 type={"radio"}
                 name="select-date"
                 value={2}
-
+                
                 checked={initialState.selectDate=="select date" || selectDate==2}
                 onChange={(e) => {setSelectDate(2); updateDate("select date");updateCheckIn(new Date());updateCheckOut(add(new Date(),{days:5}))}}
               />

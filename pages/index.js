@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState,useContext } from "react";
 import Dropdown from "../components/dropdown";
 import SEARCH_CONTEXT from "../context/store";
+import AddEmail from "../sections/step/addEmail";
 import SelectCampground from "../sections/step/selectCampground";
 import SelectDates from "../sections/step/selectDates";
 import { SEARCH_CAMPGROUNDS } from "../utils/services";
@@ -50,7 +51,7 @@ const Landing = () => {
                 value={search}
                 onChange={handleSearch}
               />
-              {availOptions && <Dropdown list={availOptions} />}
+              {availOptions && <Dropdown setAvailOptions={setAvailOptions} setSearch={setSearch} list={availOptions} />}
             </div>
             <div className="flex gap-3 font-thin text-xs text-black">
               <span className="block">Popular Searches : </span>
@@ -62,6 +63,9 @@ const Landing = () => {
         </main>
       {initialState.currentStep>=1 && <SelectCampground/>}
       {initialState.currentStep>=2 && <SelectDates/> }
+      
+      {initialState.currentStep>=3 && <AddEmail/> }
+
       </section>
     </>
   );

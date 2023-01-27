@@ -58,6 +58,11 @@ export const reducer = (state, action) => {
         ...action.payload
       ]};
     }
+    case ACTIONS.UPDATE_EMAIL:{
+      return{
+        ...state,email_id:action.payload
+      }
+    }
     default:
       return state;
   }
