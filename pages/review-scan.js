@@ -1,17 +1,24 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import Tags from "../components/tags";
 import SEARCH_CONTEXT from "../context/store";
 import Section2 from "../sections/reviewScan/section2";
 
 const ReviewScan = () => {
-  const { initialState } = useContext(SEARCH_CONTEXT);
+  let router=useRouter();
+  const { initialState,updateStep } = useContext(SEARCH_CONTEXT);
+  
+  const handleClick=()=>{
+    updateStep(1);
+    router.replace('/')
+  }
   return (
     <>
       <main className="container mx-auto my-8 flex flex-col gap-8">
         <div className="flex items-center justify-between ">
           <div className="text-4xl font-medium  ">Review your scan</div>
-          <div className="text-lightGreen cursor-pointer hover:underline  font-medium flex gap-1 text-xl">
+          <div onClick={handleClick} className="text-lightGreen cursor-pointer hover:underline  font-medium flex gap-1 text-xl">
             Edit your scan
             <Image src={"/icons/edit-3.svg"} width={24} height={24} />
           </div>

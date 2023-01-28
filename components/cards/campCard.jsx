@@ -9,7 +9,7 @@ import OptionsCard from "./optionsCard";
 const CampCard = ({ camp }) => {
   const others = ["Carlsbad State Beach", "Leo Carrilo", "San Clemente"];
   const [nearByCamps, setNearByCamps] = useState();
-  const { removeCampground } = useContext(SEARCH_CONTEXT);
+  const { removeCampground,initialState } = useContext(SEARCH_CONTEXT);
   const [showOptions,setShowOptions]=useState(false);
   useEffect(() => {
     (async () => {
@@ -17,7 +17,10 @@ const CampCard = ({ camp }) => {
       setNearByCamps(res);
     })();
   }, []);
-
+  const handleClick=(id)=>{
+    let res=nearByCamps.filter(item=>item._id!=id);
+    setNearByCamps(res);
+  }
   return (
     <>
       <article className="w-full px-3 py-4 shadow-lg rounded-xl flex flex-col gap-4">
@@ -40,10 +43,10 @@ const CampCard = ({ camp }) => {
             </div>
             <div className="flex gap-3 flex-wrap ">
               {nearByCamps.map((item) => (
-                <AddBtn key={item._id} camp={item} />
+                <AddBtn key={item._id} camp={item} handleClick={handleClick} />
               ))}
             </div>
-          </div>
+          </div>  
         )}
         {showOptions && <OptionsCard camp={camp} />}
         <div onClick={()=>setShowOptions(!showOptions)} className="w-full cursor-pointer rounded-lg bg-gray-100 text-lightGreen text-base flex gap-2 items-center justify-center p-3">

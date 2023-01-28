@@ -6,11 +6,16 @@ import Image from "next/image";
 import SEARCH_CONTEXT from "../../context/store";
 import add from "date-fns/add";
 const SelectDates = () => {
-  const { initialState, updateCheckIn, updateCheckOut,updateStep ,updateDate,updateEquipment} =
-    useContext(SEARCH_CONTEXT);
-  const ref = useRef(null);
-  const [equip,setEquip]=useState([...initialState.campingEquip]);
-  const endRef = useRef(null);
+  const {
+    initialState,
+    updateCheckIn,
+    updateCheckOut,
+    updateStep,
+    updateDate,
+    updateEquipment,
+  } = useContext(SEARCH_CONTEXT);
+  const [equip, setEquip] = useState([...initialState.campingEquip]);
+  const [curr, setCurr] = useState(null);
   const [selectDate, setSelectDate] = useState(initialState.selectDate);
   const CheckIn = React.forwardRef(({ value, onClick }, ref) => (
     <div className="flex bg-gray-50 border-[1px]  items-center py-3 px-2 rounded-md gap-1">
@@ -49,44 +54,72 @@ const SelectDates = () => {
       />
     </div>
   ));
-  const handleClick=()=>{
-    if(selectDate!=-1){
-      updateStep(3)
+  const handleClick = () => {
+    if (selectDate != -1) {
+      updateStep(3);
     }
-  }
-  const handleChange=(e)=>{
-    if(e.target.checked){
-      setEquip([...equip,e.target.value])
-      updateEquipment([...equip,e.target.value])
-    }else{
-      updateEquipment(equip.filter(item=>item!=e.target.value))
-      setEquip(equip.filter(item=>item!=e.target.value))
+  };
+  const handleChange = (e) => {
+    if (e.target.checked) {
+      setEquip([...equip, e.target.value]);
+      updateEquipment([...equip, e.target.value]);
+    } else {
+      updateEquipment(equip.filter((item) => item != e.target.value));
+      setEquip(equip.filter((item) => item != e.target.value));
     }
-  }
+  };
   return (
     <>
       <Accordian step={2} title={"Select Your dates and Camping equipment"}>
         <main className="grid grid-cols-2 gap-6 px-4">
           <div className="flex flex-col gap-4">
             <div className="text-black text-xl font-medium">Your Dates</div>
-            <div className="flex gap-2 text-black p-2 border-brown border-[1px] rounded-lg">
+            <div
+              onClick={(e) => {
+                updateDate("Any Day within the Next 30 Days");
+                setSelectDate("Any Day within the Next 30 Days");
+                setCurr(0);
+              }}
+              className={`${
+                curr == 0 && "bg-brown text-white"
+              } flex items-center cursor-pointer gap-2 text-black p-2 border-brown border-[1px] rounded-lg`}
+            >
               <input
                 type={"radio"}
                 name="select-date"
                 value={"Any Day within the Next 30 Days"}
-                checked={initialState.selectedDate=="Any Day within the Next 30 Days" || selectDate=='Any Day within the Next 30 Days'}
-                className="checked:bg-red-600"
-                onChange={(e) => {updateDate(e.target.value);setSelectDate(e.target.value)}}
+                checked={
+                  initialState.selectedDate ==
+                    "Any Day within the Next 30 Days" ||
+                  selectDate == "Any Day within the Next 30 Days"
+                }
+                className="  transform scale-125 checked:text-red"
+                onChange={(e) => {
+                  updateDate(e.target.value);
+                  setSelectDate(e.target.value);
+                }}
               />
               Any Day within the Next 30 Days
             </div>
-            <div className="flex gap-2 text-black p-2 border-brown border-[1px] rounded-lg">
+            <div
+              onClick={(e) => {
+                updateDate("Any Weekend over the Next 60 Days");
+                setSelectDate("Any Weekend over the Next 60 Days");
+                setCurr(1);
+              }}
+              className={`${
+                curr == 1 && "bg-brown text-white"
+              } flex items-center cursor-pointer gap-2 text-black p-2 border-brown border-[1px] rounded-lg`}
+            >
               <input
                 type={"radio"}
                 name="select-date"
-                checked={initialState.selectedDate=="Any Weekend over the Next 60 Days" || selectDate=="Any Weekend over the Next 60 Days" }
+                checked={
+                  initialState.selectedDate ==
+                    "Any Weekend over the Next 60 Days" ||
+                  selectDate == "Any Weekend over the Next 60 Days"
+                }
                 value={"Any Weekend over the Next 60 Days"}
-                onChange={(e) => {updateDate(e.target.value);setSelectDate(e.target.value)}}
               />
               Any Weekend over the Next 60 Days
             </div>
@@ -95,9 +128,15 @@ const SelectDates = () => {
                 type={"radio"}
                 name="select-date"
                 value={2}
-                
-                checked={initialState.selectDate=="select date" || selectDate==2}
-                onChange={(e) => {setSelectDate(2); updateDate("select date");updateCheckIn(new Date());updateCheckOut(add(new Date(),{days:5}))}}
+                checked={
+                  initialState.selectDate == "select date" || selectDate == 2
+                }
+                onChange={(e) => {
+                  setSelectDate(2);
+                  updateDate("select date");
+                  updateCheckIn(new Date());
+                  updateCheckOut(add(new Date(), { days: 5 }));
+                }}
               />
               Use the Date Picker
             </div>
@@ -108,7 +147,7 @@ const SelectDates = () => {
             </div>
             <div className="flex flex-col gap-4">
               <div className="bg-white flex flex-col gap-4">
-                <label className="flex gap-2 text-sm items-center">
+                <label className="flex gap-2 text-base items-center">
                   <input
                     type="checkbox"
                     name="tent"
@@ -121,7 +160,7 @@ const SelectDates = () => {
                 </label>
               </div>
               <div className="bg-white flex flex-col gap-4">
-                <label className="flex gap-2 text-sm items-center">
+                <label className="flex gap-2 text-base items-center">
                   <input
                     type="checkbox"
                     name="tent"
@@ -132,6 +171,9 @@ const SelectDates = () => {
                   />
                   RV/Trailer/Truck
                 </label>
+              </div>
+              <div className="flex items-center w-full border-gray-300/50 border-2 p-1 bg-gray-100/50 rounded">
+                <input type="text" className="bg-transparent p-2 text-base text-gray-400 outline-none " placeholder="Vehicle length" />
               </div>
             </div>
           </div>
@@ -146,19 +188,19 @@ const SelectDates = () => {
             />
             <DatePicker
               calendarClassName=""
-              selected={initialState.checkOut || add(new Date(),{days:5})}
+              selected={initialState.checkOut || add(new Date(), { days: 5 })}
               onChange={(date) => updateCheckOut(date)}
               customInput={<CheckOut />}
             />
           </div>
         )}
-          <button
-            disabled={!selectDate}
-            onClick={handleClick}
-            className="bg-lightGreen disabled:bg-gray-300 w-full rounded p-3 text-white flex justify-center items-center gap-2"
-          >
-            NEXT STEP{" "}
-          </button>
+        <button
+          disabled={!selectDate}
+          onClick={handleClick}
+          className="bg-lightGreen disabled:bg-gray-300 w-full rounded p-3 text-white flex justify-center items-center gap-2"
+        >
+          NEXT STEP{" "}
+        </button>
       </Accordian>
     </>
   );

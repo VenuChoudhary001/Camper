@@ -5,7 +5,7 @@ const Dropdown = ({list,setSearch,setAvailOptions}) => {
   const {addCampgrounds,initialState}=useContext(SEARCH_CONTEXT);
   const handleClick=(item)=>{
     addCampgrounds(item);
-    setSearch(item.name)
+    setSearch("")
     setAvailOptions([]);
   }
   return (
