@@ -104,6 +104,12 @@ const ReviewScan = () => {
             </div>
           </div>
         </div>
+      <button
+            onClick={()=>router.push('/success')}
+            className="bg-lightGreen disabled:bg-gray-300 w-full rounded p-3 text-white flex justify-center items-center gap-2"
+          >
+            ACTIVATE THE SCAN
+          </button>
       </main>
       <Section2/>
     </>

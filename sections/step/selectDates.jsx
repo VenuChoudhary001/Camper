@@ -123,7 +123,10 @@ const SelectDates = () => {
               />
               Any Weekend over the Next 60 Days
             </div>
-            <div className="flex gap-2 text-black p-2 border-brown border-[1px] rounded-lg">
+            <div onClick={()=>{setSelectDate(2);
+                  updateDate("select date");
+                  updateCheckIn(new Date());
+                  updateCheckOut(add(new Date(), { days: 5 }));}} className="flex gap-2 cursor-pointer flex items-center text-black p-2 border-brown border-[1px] rounded-lg">
               <input
                 type={"radio"}
                 name="select-date"
