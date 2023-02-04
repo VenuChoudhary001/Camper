@@ -17,33 +17,52 @@ const Section2 = () => {
     created() {
       setLoaded(true)
     },
+    breakpoints: {
+      "(max-width:500px)": {
+        slides: {
+          perView: 1.5,
+        
+          spacing: 10,
+        },
+      },
+      "(min-width:768px)": {
+        slides: {
+          perView: 2.5,
+          
+          spacing: 15,
+        },
+      },
+      "(min-width:1024px)": {
+        slides: {
+          perView: 3.5,
+         
+          spacing: 15,
+        },
+      },
+      "(min-width:1439px)": {
+        slides: {
+          perView: 3.5,
+         
+          spacing: 15,
+        },
+      },
+      "(min-width:1600px)": {
+        slides: {
+          perView: 4.5,
+          spacing: 15,
+        },
+      },
+    }
   });
   return (
     <>
-      <main className="container mx-auto flex flex-col gap-8">
+      <main className="container my-12 mx-auto flex flex-col gap-8">
         <div className="flex items-center justify-between">
-          <div className="text-3xl font-semibold">
+          <div className="text-lg md:text-3xl font-medium md:font-semibold">
             Recent matching availabilities
           </div>
           {loaded && instanceRef.current && (
-          <div className="flex gap-2">
-            {/* <Arrow
-              left
-              onClick={(e) =>
-                e.stopPropagation() || instanceRef.current?.prev()
-              }
-              disabled={currentSlide === 0}
-            />
-            
-            <Arrow
-              onClick={(e) =>
-                e.stopPropagation() || instanceRef.current?.next()
-              }
-              disabled={
-                currentSlide ===
-                instanceRef.current.track.details.slides.length - 1
-              }
-            /> */}
+          <div className="md:flex gap-2 hidden">
             <button className="bg-gray-200 p-2 w-8 justify-center items-center flex rounded-full h-8" onClick={(e) =>
                 e.stopPropagation() || instanceRef.current?.prev()
               }>

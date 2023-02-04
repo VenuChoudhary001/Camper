@@ -32,7 +32,7 @@ const Navbar = () => {
               unoptimized
             />
           </div>
-          <div className="flex lg:gap-6 xl:gap-12 ml-auto items-center text-black font-medium">
+          <div className="md:flex hidden lg:gap-6 xl:gap-12 ml-auto items-center text-black font-medium">
             {navLinks.map((item, index) => (
               <Link
                 href={item.path}
@@ -51,5 +51,6 @@ const Navbar = () => {
     </>
   );
 };
+
 
 export default Navbar;

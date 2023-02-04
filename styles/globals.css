@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
 .container{
-    width: 85vw;
+    width: 90vw;
 }
 @media screen and (min-width:1439px) {
     .container{
@@ -80,3 +80,16 @@ input[type="radio"] {
   input[type="checkbox"]:checked::before {
     transform: scale(1);
   }
+.selCamp::-webkit-scrollbar {
+    width: 2px;
+}
+
+.selCamp::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+.selCamp::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(69, 14, 14, 0.5); 
+}

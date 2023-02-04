@@ -12,24 +12,16 @@ const Accordian = ({ children ,title,step}) => {
   return (
     <>
       <main className={`${initialState.currentStep>step ?"border-lightGreen": "border-gray-200"} border-2 flex flex-col gap-6 rounded-lg p-4 w-full relative`}>
-        <div className="flex items-center justify-between">
-          <div className="text-black flex gap-2 items-center text-2xl font-medium">
+        <div className="flex items-center gap-4 justify-between">
+          <div className="text-black flex gap-2 items-center text-sm md:text-2xl font-medium">
             Step {step} :&nbsp;
-            {title}
-           {initialState.currentStep>step && <Image 
-            src={'/icons/correct.svg'}
-            width={24}
-            height={24}
-            />}
+            {title} {initialState.currentStep>step &&
+            <img src={'/icons/correct.svg'} alt="" />
+            }
           </div>
 
-          <Image
-            src={!show ? "/icons/up.svg" : "/icons/down.svg"}
-            width={18}
-            height={24}
-            className="cursor-pointer"
-            onClick={() => setShow(!show)}
-          />
+          <img src={!show ? "/icons/up.svg" : "/icons/down.svg"} alt=""className="cursor-pointer"
+            onClick={() => setShow(!show)} />
         </div>
         {show && children}
       </main>

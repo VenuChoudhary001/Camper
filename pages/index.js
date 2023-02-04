@@ -13,7 +13,7 @@ const Landing = () => {
   const {addCampgrounds}=useContext(SEARCH_CONTEXT);
   const handleClick=(item)=>{addCampgrounds(item); router.replace('/search') }
   const handleSearch = async (e) => {
-    setSearch(e.target.value.trim());
+    setSearch(e.target.value);
     if (e.target.value.length >= 1 && e.target.value != " ") {
       let res = await SEARCH_CAMPGROUNDS(e.target.value);
       if (res.length > 0) {
@@ -31,12 +31,12 @@ const Landing = () => {
 
   return (
     <>
-      <section className="container flex flex-col justify-center items-center min-h-[700px] gap-8 mx-auto">
-        <Image src={"/icons/logo.png"} width={341} height={62} unoptimized />
-        <main className="text-7xl  text-black font-heading">
+      <section className="container flex flex-col justify-center items-center min-h-[500px] md:min-h-[700px] gap-8 mx-auto">
+        <Image src={"/icons/logo.png"} className='hidden md:block' width={341} height={62} unoptimized />
+        <main className="text-5xl md:text-7xl  text-black font-heading">
           Select Your Campground
         </main>
-        <main className="text-base text-black">
+        <main className="text-sm md:text-base text-dark">
           Search for your campground below that you would like to set up a scan
           for. Feel free to select more than one campground!
         </main>
@@ -50,7 +50,7 @@ const Landing = () => {
             value={search}
             onChange={handleSearch}
           />
-          {availOptions &&  <div className="w-full bg-white z-[9999] absolute top-[60px] left-0 rounded-lg text-dark_gray bg-white shadow-2xl  text-base py- overflow-auto max-h-[180px] flex flex-col ">
+          {availOptions &&  <div className="w-full bg-white z-[9999] absolute top-[70px] md:top-[60px] left-0 rounded-lg text-dark_gray bg-white shadow-2xl  text-base py- overflow-auto max-h-[180px] flex flex-col ">
             {availOptions.map((item) => (
               <div
                 key={item._id}
@@ -62,11 +62,11 @@ const Landing = () => {
             ))}
           </div>}
         </div>
-        <div className="flex gap-3 font-thin text-xs text-black">
+        <div className="flex gap-3 font-thin  text-xs text-black">
           <span className="block">Popular Searches : </span>
           <span className="block">Campground 1 </span>
-          <span className="block">Campground 1 </span>
-          <span className="block">Campground 1 </span>
+          <span className="hidden md:block">Campground 1 </span>
+          <span className="hidden md:block">Campground 1 </span>
         </div>
       </section>
     </>

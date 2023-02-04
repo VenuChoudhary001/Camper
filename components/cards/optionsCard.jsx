@@ -6,8 +6,8 @@ const OptionsCard = ({ camp }) => {
   return (
     <>
       <main className="flex flex-col gap-4 p-4">
-        <div className="text-xl font-semibold text-black">Advanced Options</div>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="text-base font-medium md:text-xl md:font-semibold text-black">Advanced Options</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {camp.options.map((item) => (
             <div
               key={item.option_id}

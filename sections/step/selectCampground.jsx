@@ -10,7 +10,7 @@ const SelectCampground = () => {
   return (
     <>
       <Accordian title={"Selected Campgrounds"} step={1}>
-        <main className="flex flex-col pb-4 gap-6 max-h-[650px] overflow-auto rounded-lg  w-full">
+        <main className="flex flex-col pb-4 selCamp gap-6 max-h-[650px] overflow-auto rounded-lg  w-full">
           <div className="flex flex-col gap-6">
             {initialState.campgrounds.map((item) => (
               <CampCard camp={item} key={item._id} />

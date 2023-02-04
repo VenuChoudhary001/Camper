@@ -14,7 +14,7 @@ const AddEmail = () => {
             width={24}
             height={18}
             />
-            <input onChange={(e)=>updateEmail(e.target.value)} type="email" className='bg-transparent w-full p-3 outline-none  ' placeholder='email address' />
+            <input onChange={(e)=>updateEmail(e.target.value)} type="email" className='bg-transparent text-sm md:text-base w-full p-3 outline-none  ' placeholder='email address' />
         </main>
     </Accordian>
         <Link href="/review-scan"

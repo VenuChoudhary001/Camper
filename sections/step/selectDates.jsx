@@ -18,6 +18,7 @@ const SelectDates = () => {
   const [curr, setCurr] = useState(null);
   const [selectDate, setSelectDate] = useState(initialState.selectDate);
   const [showOptions, setShowOptions] = useState(false);
+  
   const CheckIn = React.forwardRef(({ value, onClick }, ref) => (
     <div className="flex bg-gray-50 border-[1px]  items-center py-3 px-2 rounded-md gap-1">
       <Image src={"/icons/arrow-down.svg"} width={16} height={10} />
@@ -72,9 +73,9 @@ const SelectDates = () => {
   return (
     <>
       <Accordian step={2} title={"Select Your dates and Camping equipment"}>
-        <main className="grid grid-cols-2 gap-6 px-4">
+        <main className="grid grid-cols-1 md:grid-cols-2 gap-6 md:px-4">
           <div className="flex flex-col gap-4">
-            <div className="text-black text-xl font-medium">Your Dates</div>
+            <div className="text-black  md:text-xl font-medium">Your Dates</div>
             <div
               onClick={(e) => {
                 updateDate("Any Day within the Next 30 Days");
@@ -83,7 +84,7 @@ const SelectDates = () => {
               }}
               className={`${
                 curr == 0 && "bg-brown text-white"
-              } flex items-center cursor-pointer gap-2 text-black p-2 border-brown border-[1px] rounded-lg`}
+              } flex items-center cursor-pointer gap-2 text-sm md:text-base text-black p-2 border-brown border-[1px] rounded-lg`}
             >
               <input
                 type={"radio"}
@@ -110,7 +111,7 @@ const SelectDates = () => {
               }}
               className={`${
                 curr == 1 && "bg-brown text-white"
-              } flex items-center cursor-pointer gap-2 text-black p-2 border-brown border-[1px] rounded-lg`}
+              } flex items-center cursor-pointer text-sm md:text-base gap-2 text-black p-2 border-brown border-[1px] rounded-lg`}
             >
               <input
                 type={"radio"}
@@ -127,11 +128,14 @@ const SelectDates = () => {
             <div
               onClick={() => {
                 setSelectDate(2);
+                setCurr(2)
                 updateDate("select date");
                 updateCheckIn(new Date());
                 updateCheckOut(add(new Date(), { days: 5 }));
               }}
-              className="flex gap-2 cursor-pointer flex items-center text-black p-2 border-brown border-[1px] rounded-lg"
+              className={`${
+                curr == 2 && "bg-brown text-white"
+              } flex gap-2 cursor-pointer text-sm md:text-base flex items-center text-black p-2 border-brown border-[1px] rounded-lg`}
             >
               <input
                 type={"radio"}
@@ -150,57 +154,19 @@ const SelectDates = () => {
               Use the Date Picker
             </div>
           </div>
-          <div className="flex flex-col gap-4">
-            <div className="text-black text-xl font-medium">
-              Camping Equipment Type
-            </div>
-            <div className="flex flex-col gap-4">
-              <div className="bg-white flex flex-col gap-4">
-                <label className="flex gap-2 text-base items-center">
-                  <input
-                    type="checkbox"
-                    name="tent"
-                    className="w-5 h-5 intermediate:bg-gray-200 intermediate:w-20"
-                    value={"tent"}
-                    checked={equip.includes("tent")}
-                    onChange={handleChange}
-                  />
-                  Tent
-                </label>
-              </div>
-              <div className="bg-white flex flex-col gap-4">
-                <label className="flex gap-2 text-base items-center">
-                  <input
-                    type="checkbox"
-                    name="tent"
-                    className="w-5 h-5 intermediate:bg-gray-200 intermediate:w-20"
-                    value={"truck"}
-                    checked={equip.includes("truck")}
-                    onChange={handleChange}
-                  />
-                  RV/Trailer/Truck
-                </label>
-              </div>
-              <div className="flex items-center w-full border-gray-300/50 border-2 p-1 bg-gray-100/50 rounded">
-                <input
-                  type="text"
-                  className="bg-transparent p-2 text-base text-gray-400 outline-none "
-                  placeholder="Vehicle length"
-                />
-              </div>
-            </div>
-          </div>
-        </main>
-        {selectDate == 2 && (
-          <>
-            <div className="flex flex-col gap-5 max-w-[600px] ml-4">
-              <div className="flex  max-w-[600px] gap-4">
+          {selectDate == 2 && (
+          <main className="block md:hidden">
+            <div className="flex flex-col gap-5 max-w-[600px] ">
+              <div className="flex flex-col max-w-[600px] gap-2 md:gap-4">
+                <div className="text-sm text-brown md:hidden">Check In</div>
                 <DatePicker
                   calendarClassName=""
                   selected={initialState.checkIn || new Date()}
                   onChange={(date) => updateCheckIn(date)}
                   customInput={<CheckIn />}
                 />
+                <div className="text-sm text-brown md:hidden">Check Out</div>
+                
                 <DatePicker
                   calendarClassName=""
                   selected={
@@ -257,7 +223,124 @@ const SelectDates = () => {
                 {showOptions?"HIDE":"SHOW"} ADVANCED OPTIONS...
               </div>
             </div>
-          </>
+          </main>
+        )}
+          <div className="flex flex-col gap-4">
+            <div className="text-black md:text-xl font-medium">
+              Camping Equipment Type
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="bg-white flex flex-col gap-4">
+                <label className="flex gap-2 text-base items-center">
+                  <input
+                    type="checkbox"
+                    name="tent"
+                    className="w-5 h-5 intermediate:bg-gray-200 intermediate:w-20"
+                    value={"tent"}
+                    checked={equip.includes("tent")}
+                    onChange={handleChange}
+                  />
+                  Tent
+                </label>
+              </div>
+              <div className="bg-white flex flex-col gap-4">
+                <label className="flex gap-2 text-base items-center">
+                  <input
+                    type="checkbox"
+                    name="tent"
+                    className="w-5 h-5 intermediate:bg-gray-200 intermediate:w-20"
+                    value={"truck"}
+                    checked={equip.includes("truck")}
+                    onChange={handleChange}
+                  />
+                  RV/Trailer/Truck
+                </label>
+              </div>
+             {equip.includes("truck") && <div className="flex items-center w-full border-gray-300/50 border-2 p-1 bg-gray-100/50 rounded">
+                <input
+                  type="number"
+                  className="bg-transparent p-2 text-base text-gray-400 outline-none "
+                  placeholder="Vehicle length"
+                />
+              </div>}
+            </div>
+          </div>
+        </main>
+        {selectDate == 2 && (
+          <main className="hidden md:block">
+            <div className="flex flex-col gap-5 max-w-[600px] ml-4">
+              <div className="flex flex-col md:flex-row max-w-[600px] gap-2 md:gap-4">
+                <div className="flex flex-col gap-2">
+
+                <div className="text-sm text-brown">Check In</div>
+                <DatePicker
+                  calendarClassName=""
+                  selected={initialState.checkIn || new Date()}
+                  onChange={(date) => updateCheckIn(date)}
+                  customInput={<CheckIn />}
+                  />
+                  </div>
+                <div className="flex flex-col gap-2">
+                <div className="text-sm text-brown">Check Out</div>
+
+                <DatePicker
+                  calendarClassName=""
+                  selected={
+                    initialState.checkOut || add(new Date(), { days: 5 })
+                  }
+                  onChange={(date) => updateCheckOut(date)}
+                  customInput={<CheckOut />}
+                />
+                </div>
+              </div>
+         {showOptions &&     <>
+              <div className="flex gap-4 w-full items-center">
+                <div className="text-base min-w-max  text-black">
+                  Minimum night stays
+                </div>
+                <div className="p-1 rounded w-full bg-gray-50 border-[1px]">
+                  <input
+                    type={"number"}
+                    placeholder="Select number of nights to stay"
+                    className="outline-none text-dark w-full bg-transparent p-2"
+                  />
+                </div>
+              </div>
+              <div className="flex gap-4 w-full items-start">
+              <div className="text-base min-w-max  text-black">
+                  Check-in on 
+                </div>
+                <div className="flex gap-6 w-full bg-gray-50 border-[1px] p-4 rounded">
+                  <div className="flex flex-col gap-3">
+                    {weekDay.map((item,index)=> index < 3 &&  <label className="flex gap-2 text-base items-center">
+                  <input
+                    type="checkbox"
+                    name="tent"
+                    className="w-5 h-5 intermediate:bg-gray-200 intermediate:w-20"
+                    value={"tent"}
+                  />
+                 {item}
+                </label>)}
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    {weekDay.map((item,index)=> index >= 3 &&  <label className="flex gap-2 text-base items-center">
+                  <input
+                    type="checkbox"
+                    name="tent"
+                    className="w-5 h-5 intermediate:bg-gray-200 intermediate:w-20"
+                    value={"tent"}
+                  />
+                 {item}
+                </label>)}
+                  </div>
+                </div>
+              </div>
+              </>}
+              <div onClick={()=>setShowOptions(!showOptions)} className="text-sm font-semibold text-lightGreen cursor-pointer hover:underline">
+                {showOptions?"HIDE":"SHOW"} ADVANCED OPTIONS...
+              </div>
+            </div>
+          </main>
         )}
         <button
           disabled={!selectDate}
