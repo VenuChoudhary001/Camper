@@ -18,7 +18,7 @@ const ReviewScan = () => {
       <main className="container mx-auto my-8 flex flex-col gap-8">
         <div className="flex flex-col md:flex-row md:items-center  gap-2 justify-between ">
           <div className="text-2xl md:text-4xl font-medium  ">Review your scan</div>
-          <div onClick={handleClick} className="text-lightGreen cursor-pointer hover:underline  font-medium flex gap-1 text-base md:text-xl">
+          <div onClick={handleClick} className="text-lightGreen min-w-max bg-gray-200/50 p-3 hover:bg-gray-200/80 rounded cursor-pointer hover:underline  font-medium flex gap-1 text-base md:text-xl">
             Edit your scan
             <Image src={"/icons/edit-3.svg"} width={24} height={24} />
           </div>
@@ -36,7 +36,7 @@ const ReviewScan = () => {
             <hr className="md:hidden h-[2px]"/>
             <div className="flex flex-col gap-4">
               {initialState.campgrounds.map((item) => (
-                <div className="shado  text-sm md:text-lg max-w-[450px] text-dark_gray flex items-center justify-between py-2 md:p-4">
+                <div className="shadow-lg shadow-lightShadow text-sm md:text-lg text-dark_gray flex items-center justify-between py-2 md:p-4">
                   <div className="flex gap-2 items-center">
                     {item.name} <Tags id={item.city_symbol} />
                   </div>
@@ -50,7 +50,7 @@ const ReviewScan = () => {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col bg-lightBlue p-6 gap-8">
             <div className="flex flex-col gap-2 md:gap-6">
               <div className="text-lg md:text-2xl font-medium text-gray">
                 Date Selection Info
@@ -60,20 +60,20 @@ const ReviewScan = () => {
                 {initialState.selectedDate == "select date" ? (
                   <div className="flex flex-col gap-2">
                     <div className="flex gap-6">
-                      <div className="text-light_gray-100 font-normal">
+                      <div className="text-light_gray-100 md:text-lg font-normal">
                         Check-in date
                       </div>
-                      <div className="text-dark_gray font-normal">
+                      <div className="text-dark_gray md:text-lg font-normal">
                         {new Date(initialState.checkIn).toLocaleDateString(
                           "en"
                         )}
                       </div>
                     </div>
                     <div className="flex gap-6">
-                      <div className="text-light_gray-100 font-normal">
+                      <div className="text-light_gray-100 md:text-lg font-normal">
                         Check-out date
                       </div>
-                      <div className="text-dark_gray font-normal">
+                      <div className="text-dark_gray md:text-lg font-normal">
                         {new Date(initialState.checkOut).toLocaleDateString(
                           "en"
                         )}

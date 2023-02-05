@@ -20,6 +20,8 @@ module.exports = {
         dark_gray: "#1E1E1E",
         brown: "#7D4E24",
         lightGreen: "#54B800",
+        lightBlue:"rgba(111, 129, 156, 0.05)",
+        lightShadow:"rgba(111, 129, 156, 0.1)"
       },
       fontFamily: {
         primary: "Poppins",
